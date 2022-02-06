@@ -27,7 +27,6 @@ class DisableProfileImageUploadPlugin extends GenericPlugin
 		if ($success && $this->getEnabled()) {
 			HookRegistry::register('publicprofileform::Constructor', [$this, 'constructorCallback']);
 			HookRegistry::register('TemplateResource::getFilename', array($this, '_overridePluginTemplates'));
-			// publicprofileform::Constructor
 		}
 		return $success;
 	}
@@ -48,10 +47,15 @@ class DisableProfileImageUploadPlugin extends GenericPlugin
 		return __('plugins.generic.disableProfileImageUpload.description');
 	}
 
+	/**
+	 * Unsets the PHP global $_FILES in the context of the ProfilePluginForm so no user profile images can be uploaded.
+	 *
+	 * @param string $hookName
+	 * @param array $args
+	 * @return bool
+	 */
 	function constructorCallback(string $hookName, array $args): bool
 	{
-		$temp = $args;
-
 		if (isset($_FILES)) {
 			unset($_FILES);
 		}

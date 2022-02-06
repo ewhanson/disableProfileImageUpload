@@ -45,6 +45,8 @@
 
     {include file="controllers/notification/inPlaceNotification.tpl" notificationId="publicProfileNotification"}
 
+	{* Profile image upload section removed for plugin *}
+
     {fbvFormSection}
     {fbvElement type="textarea" label="user.biography" multilingual="true" name="biography" id="biography" rich=true value=$biography}
     {/fbvFormSection}
