@@ -15,7 +15,7 @@
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#publicProfileForm').pkpHandler(
-			'$.pkp.controllers.form.FileUploadFormHandler',
+			'$.pkp.controllers.form.AjaxFormHandler',
 			{ldelim}
 				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
