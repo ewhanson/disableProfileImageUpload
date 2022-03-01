@@ -47,6 +47,16 @@ class DisableProfileImageUploadPlugin extends GenericPlugin
 		return __('plugins.generic.disableProfileImageUpload.description');
 	}
 
+	function setEnabled($enabled)
+	{
+		parent::setEnabled($enabled);
+
+		// Clear template cache when plugin is enabled to apply change immediately
+		$templateMgr = TemplateManager::getManager(Application::get()->getRequest());
+		$templateMgr->clearTemplateCache();
+		$templateMgr->clearCssCache();
+	}
+
 	/**
 	 * Unsets the PHP global $_FILES in the context of the ProfilePluginForm so no user profile images can be uploaded.
 	 *
