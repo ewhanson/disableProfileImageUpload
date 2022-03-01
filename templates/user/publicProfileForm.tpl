@@ -14,30 +14,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#publicProfileForm').pkpHandler(
-			'$.pkp.controllers.form.AjaxFormHandler',
-			{ldelim}
-				$uploader: $('#plupload'),
-				uploaderOptions: {ldelim}
-					uploadUrl: {url|json_encode op="uploadProfileImage" escape=false},
-					baseUrl: {$baseUrl|json_encode},
-					filters: {ldelim}
-						mime_types : [
-							{ldelim} title : "Image files", extensions : "jpg,jpeg,png,svg,gif" {rdelim}
-						]
-                        {rdelim},
-					multipart_params: {ldelim}
-						csrfToken: {csrf type="json"}
-                        {rdelim},
-					resize: {ldelim}
-						width: {$profileImageMaxWidth|intval},
-						height: {$profileImageMaxHeight|intval},
-						crop: true,
-                        {rdelim}
-                    {rdelim}
-                {rdelim}
-		);
-        {rdelim});
+		$('#publicProfileForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 </script>
 
 <form class="pkp_form" id="publicProfileForm" method="post" action="{url op="savePublicProfile"}" enctype="multipart/form-data">
@@ -54,10 +31,12 @@
     {fbvElement type="text" label="user.url" name="userUrl" id="userUrl" value=$userUrl maxlength="255"}
     {/fbvFormSection}
     {fbvFormSection}
-    {fbvElement type="text" label="user.orcid" name="orcid" id="orcid" value=$orcid maxlength="37"}
+    {fbvElement type="text" label="user.orcid" name="orcid" id="orcid" value=$orcid maxlength="46"}
     {/fbvFormSection}
 
     {call_hook name="User::PublicProfile::AdditionalItems"}
+
+    {fbvFormButtons hideCancel=true submitText="common.save"}
 
 	<p>
         {capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
@@ -65,6 +44,4 @@
 	</p>
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
-    {fbvFormButtons hideCancel=true submitText="common.save"}
 </form>
