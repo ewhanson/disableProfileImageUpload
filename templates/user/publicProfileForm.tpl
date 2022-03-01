@@ -14,29 +14,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#publicProfileForm').pkpHandler(
-			'$.pkp.controllers.form.AjaxFormHandler',
-			{ldelim}
-				$uploader: $('#plupload'),
-				uploaderOptions: {ldelim}
-					uploadUrl: {url|json_encode op="uploadProfileImage" escape=false},
-					baseUrl: {$baseUrl|json_encode},
-					filters: {ldelim}
-						mime_types : [
-							{ldelim} title : "Image files", extensions : "jpg,jpeg,png,svg,gif" {rdelim}
-						]
-                        {rdelim},
-					multipart_params: {ldelim}
-						csrfToken: {csrf type="json"}
-                        {rdelim},
-					resize: {ldelim}
-						width: {$profileImageMaxWidth|intval},
-						height: {$profileImageMaxHeight|intval},
-						crop: true,
-                        {rdelim}
-                    {rdelim}
-                {rdelim}
-		);
+		$('#publicProfileForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
         {rdelim});
 </script>
 
