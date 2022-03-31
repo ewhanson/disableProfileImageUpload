@@ -15,6 +15,7 @@
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#publicProfileForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+    {rdelim});
 </script>
 
 <form class="pkp_form" id="publicProfileForm" method="post" action="{url op="savePublicProfile"}" enctype="multipart/form-data">
